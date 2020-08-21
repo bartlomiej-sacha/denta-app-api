@@ -23,7 +23,7 @@ var appointmentsRouter = _express["default"].Router({
 appointmentsRouter.get("/", function (req, res, next) {
   var userId = req.params.userId;
 
-  _connection["default"].query("SELECT timeslots.timeslot_start, timeslots.timeslot_end, doctors.first_name, doctors.last_name, days_of_work.appointment_duration, days_of_work.date\n    FROM appointments\n    INNER JOIN timeslots ON appointments.timeslots_id = timeslots.id\n    INNER JOIN days_of_work ON timeslots.days_of_work_id = days_of_work.id\n    INNER JOIN doctors ON days_of_work.doctor_id = doctors.id\n    INNER JOIN users ON appointments.user_id = users.id\n    WHERE appointments.user_id = ".concat(userId), function (error, appointments, fields) {
+  _connection["default"].query("SELECT timeslots.timeslot_start, timeslots.timeslot_end, doctors.first_name, doctors.last_name, days_of_work.appointment_duration, days_of_work.date, appointments.id\n    FROM appointments\n    INNER JOIN timeslots ON appointments.timeslots_id = timeslots.id\n    INNER JOIN days_of_work ON timeslots.days_of_work_id = days_of_work.id\n    INNER JOIN doctors ON days_of_work.doctor_id = doctors.id\n    INNER JOIN users ON appointments.user_id = users.id\n    WHERE appointments.user_id = ".concat(userId), function (error, appointments, fields) {
     if (error) {
       next(error);
     } else {

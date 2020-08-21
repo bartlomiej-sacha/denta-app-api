@@ -7,7 +7,7 @@ const appointmentsRouter = express.Router({ mergeParams: true });
 //return user appointments
 appointmentsRouter.get("/", (req, res, next) => {
     const userId = req.params.userId;
-    pool.query(`SELECT timeslots.timeslot_start, timeslots.timeslot_end, doctors.first_name, doctors.last_name, days_of_work.appointment_duration, days_of_work.date
+    pool.query(`SELECT timeslots.timeslot_start, timeslots.timeslot_end, doctors.first_name, doctors.last_name, days_of_work.appointment_duration, days_of_work.date, appointments.id
     FROM appointments
     INNER JOIN timeslots ON appointments.timeslots_id = timeslots.id
     INNER JOIN days_of_work ON timeslots.days_of_work_id = days_of_work.id
